@@ -42,7 +42,7 @@
     "body-parser": "^1.17.2",
     "buffer": "^5.0.7",
     "detect-browsers": "~2.0.0",
-    "dropbox": "^2.5.7",
+    "dropbox": "^4.0.17",
     "express": "^4.15.3",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",

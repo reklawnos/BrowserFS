@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 import {readFileSync, writeFileSync, existsSync} from 'fs';
-import Dropbox = require('dropbox');
+import { Dropbox } from 'dropbox';
 import express = require('express');
 import {parse as parseUrl} from 'url';
 import {json as jsonBodyParser} from 'body-parser';

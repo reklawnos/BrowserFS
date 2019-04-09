@@ -363,7 +363,7 @@ export default class DropboxFileSystem extends BaseFileSystem implements FileSys
       const b: Blob = (<any> res).fileBlob;
       const fr = new FileReader();
       fr.onload = () => {
-        const ab: ArrayBuffer = fr.result;
+        const ab = fr.result as ArrayBuffer;
         cb(null, new DropboxFile(this, path, flags, new Stats(FileType.FILE, ab.byteLength), arrayBuffer2Buffer(ab)));
       };
       fr.readAsArrayBuffer(b);
@@ -397,7 +397,7 @@ export default class DropboxFileSystem extends BaseFileSystem implements FileSys
       switch (<string> err['.tag']) {
         case 'path':
           const upError = <DropboxTypes.files.UploadErrorPath> err;
-          cb(WriteErrorToError(upError.path.reason, p, GetErrorMessage(e)));
+          cb(WriteErrorToError(upError.reason, p, GetErrorMessage(e)));
           break;
         case 'too_many_write_operations':
           // Retry in (500, 800) ms.
@@ -507,7 +507,7 @@ export default class DropboxFileSystem extends BaseFileSystem implements FileSys
       switch (<string> err['.tag']) {
         case 'path':
           const upError = <DropboxTypes.files.UploadErrorPath> err;
-          cb(WriteErrorToError(upError.path.reason, p, GetErrorMessage(e)));
+          cb(WriteErrorToError(upError.reason, p, GetErrorMessage(e)));
           break;
         case 'too_many_write_operations':
           setTimeout(() => this._syncFile(p, d, cb), 500 + (300 * (Math.random())));
